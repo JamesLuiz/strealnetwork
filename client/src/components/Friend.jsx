@@ -22,8 +22,11 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const isFriend = friends.find((friend) => friend._id === friendId);
 
   const patchFriend = async () => {
+    
+    const baseUrl = 'https://strealnetwork-server.vercel.app';
+    
     const response = await fetch(
-      `http://localhost:3001/users/${_id}/${friendId}`,
+      `${baseUrl}/users/${_id}/${friendId}`, // Updated URL
       {
         method: "PATCH",
         headers: {
@@ -35,7 +38,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
   };
-
+  
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">
