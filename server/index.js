@@ -17,6 +17,7 @@ import User from "./models/User.js";
 import Post from "./models/Post.js";
 import { users, posts } from "./data/index.js";
 import mongoose from "mongoose";
+import { createRequestHandler } from '@remix-run/express';
 
 // mongoose importn 
 import { MongoClient, ServerApiVersion } from 'mongodb';
@@ -92,4 +93,7 @@ async function run() {
   } 
 }
 run().catch(console.dir);
+const handler = createRequestHandler(app);
+
+export default handler;
 
