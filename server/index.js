@@ -17,8 +17,6 @@ import User from "./models/User.js";
 import Post from "./models/Post.js";
 import { users, posts } from "./data/index.js";
 import mongoose from "mongoose";
-import { createRequestHandler } from '@remix-run/express';
-
 
 // mongoose importn 
 import { MongoClient, ServerApiVersion } from 'mongodb';
@@ -33,9 +31,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors({
-  origin: 'https://strealnetwork-client.vercel.app'
-}));
+app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 const uri = process.env.MONGO_URL
 /* FILE STORAGE */
@@ -96,7 +92,4 @@ async function run() {
   } 
 }
 run().catch(console.dir);
-const handler = createRequestHandler(app);
-
-export default handler;
 
