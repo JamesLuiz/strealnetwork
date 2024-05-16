@@ -34,6 +34,10 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({
   origin: "*",
 }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 const uri = process.env.MONGO_URL
 /* FILE STORAGE */
